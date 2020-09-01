@@ -1,1 +1,1 @@
-# Number-Guesser
+# Digit-Guesser

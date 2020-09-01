@@ -13,9 +13,11 @@ def draw():
     for p in positions:
         pygame.draw.circle(window, black, p, radius)
 
+
 def main():
     run = True
     reset = False
+    predict = False
     while run:
         window.fill(white)
         for event in pygame.event.get():
@@ -31,6 +33,9 @@ def main():
                 if event.key == pygame.K_r:
                     reset = True
 
+                if event.key == pygame.K_p:
+                    predict = True
+
         if reset:
             positions.clear()
 
@@ -39,7 +44,9 @@ def main():
             reset = False
         else:
             draw()
-
+        if predict:
+            predict = False
+            pygame.image.save(window, 'predict.png')
         pygame.display.update()
 
 

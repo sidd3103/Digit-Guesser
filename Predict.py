@@ -1,13 +1,17 @@
 from keras.models import load_model
-from keras.utils import to_categorical
-import mnist
+import numpy as np
+from keras.preprocessing import image
 
-test_images = mnist.test_images()
-test_labels = mnist.test_labels()
-test_images = test_images.reshape((10000, 28, 28, 1))
-test_images = test_images.astype('float32') / 255
-test_labels = to_categorical(test_labels)
 
-model = load_model('model.h5')
-loss, acc = model.evaluate(test_images, test_labels)
-print(acc * 100)
+class Predictions:
+    def __init__(self):
+        self.model = load_model('model.h5')
+
+    def evaluate(self, path):
+        img = image.load_img(path, target_size=(28, 28), color_mode='grayscale')
+        img = image.img_to_array(img)
+        img = img.astype('float32') / 255
+        img = np.expand_dims(img, axis=0)
+        p = self.model.predict(img)
+        return np.argmax(p)
+

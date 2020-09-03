@@ -20,9 +20,9 @@ class Model:
         self.t = False
         # Define the convolutional base
         self.model = models.Sequential()
-        self.model.add(layers.Conv2D(16, (3, 3), activation='relu', input_shape=(28, 28, 1)))
+        self.model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)))
         self.model.add(layers.MaxPooling2D(2, 2))
-        self.model.add(layers.Conv2D(32, (3, 3), activation='relu'))
+        self.model.add(layers.Conv2D(64, (3, 3), activation='relu'))
         self.model.add(layers.MaxPooling2D(2, 2))
         self.model.add(layers.Conv2D(64, (3, 3), activation='relu'))
 
